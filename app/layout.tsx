@@ -5,15 +5,11 @@ import { NextAuthProvider as AuthProvider } from "./providers";
 // import { graphql } from "../gql";
 // import { graphqlClient } from "../lib/graphql-client";
 
-const inter = Inter({ subsets: ["latin"] });
-// const testDoc = graphql(/* GraphQL */ `
-//   query test {
-//     test {
-//       name
-//       email
-//     }
-//   }
-// `);
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
+});
 
 export const metadata: Metadata = {
   title: "Phase Two Keycloak + NextJs Example",

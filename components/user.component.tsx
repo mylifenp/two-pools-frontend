@@ -1,11 +1,22 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { LoginButton, LogoutButton } from "./buttons.components";
+import { useEffect } from "react";
 
 export const User = () => {
   const { data: session, status } = useSession();
   let content;
+
+  useEffect(() => {
+    if (
+      !!session &&
+      "error" in session &&
+      session?.error === "RefreshAccessTokenError"
+    ) {
+      signIn();
+    }
+  }, [session]);
 
   if (status === "loading") {
     content = (
