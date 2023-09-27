@@ -1,5 +1,8 @@
 /* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+import { FieldPolicy, FieldReadFunction, TypePolicies, TypePolicy } from '@apollo/client/cache';
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -7,6 +10,7 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -271,3 +275,196 @@ export type ProjectsQuery = { __typename?: 'Query', projects: Array<{ __typename
 
 
 export const ProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<ProjectsQuery, ProjectsQueryVariables>;
+export type AttachmentKeySpecifier = ('name' | 'url' | AttachmentKeySpecifier)[];
+export type AttachmentFieldPolicy = {
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	url?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type CategoryKeySpecifier = ('createdAt' | 'id' | 'name' | 'updatedAt' | CategoryKeySpecifier)[];
+export type CategoryFieldPolicy = {
+	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type EstimationKeySpecifier = ('unit' | 'value' | EstimationKeySpecifier)[];
+export type EstimationFieldPolicy = {
+	unit?: FieldPolicy<any> | FieldReadFunction<any>,
+	value?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type HealthKeySpecifier = ('moreInfo' | 'status' | HealthKeySpecifier)[];
+export type HealthFieldPolicy = {
+	moreInfo?: FieldPolicy<any> | FieldReadFunction<any>,
+	status?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MutationKeySpecifier = ('_' | 'addCategory' | 'addProject' | 'addSkill' | 'deleteCategory' | 'deleteProject' | 'deleteSkill' | 'health' | 'updateCategory' | 'updateProject' | 'updateSkill' | MutationKeySpecifier)[];
+export type MutationFieldPolicy = {
+	_?: FieldPolicy<any> | FieldReadFunction<any>,
+	addCategory?: FieldPolicy<any> | FieldReadFunction<any>,
+	addProject?: FieldPolicy<any> | FieldReadFunction<any>,
+	addSkill?: FieldPolicy<any> | FieldReadFunction<any>,
+	deleteCategory?: FieldPolicy<any> | FieldReadFunction<any>,
+	deleteProject?: FieldPolicy<any> | FieldReadFunction<any>,
+	deleteSkill?: FieldPolicy<any> | FieldReadFunction<any>,
+	health?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateCategory?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateProject?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateSkill?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type OrganizationRolesKeySpecifier = ('name' | 'org_id' | 'roles' | OrganizationRolesKeySpecifier)[];
+export type OrganizationRolesFieldPolicy = {
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	org_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	roles?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type ProjectKeySpecifier = ('attachments' | 'categories' | 'createdAt' | 'description' | 'estimation' | 'experience_level' | 'id' | 'location' | 'required_skills' | 'title' | 'updatedAt' | 'user' | ProjectKeySpecifier)[];
+export type ProjectFieldPolicy = {
+	attachments?: FieldPolicy<any> | FieldReadFunction<any>,
+	categories?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	estimation?: FieldPolicy<any> | FieldReadFunction<any>,
+	experience_level?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	location?: FieldPolicy<any> | FieldReadFunction<any>,
+	required_skills?: FieldPolicy<any> | FieldReadFunction<any>,
+	title?: FieldPolicy<any> | FieldReadFunction<any>,
+	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	user?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type QueryKeySpecifier = ('DBHealth' | 'RedisHealth' | '_' | 'categories' | 'category' | 'health' | 'project' | 'projects' | 'skill' | 'skills' | 'suggestCategories' | 'suggestSkills' | 'userInfo' | QueryKeySpecifier)[];
+export type QueryFieldPolicy = {
+	DBHealth?: FieldPolicy<any> | FieldReadFunction<any>,
+	RedisHealth?: FieldPolicy<any> | FieldReadFunction<any>,
+	_?: FieldPolicy<any> | FieldReadFunction<any>,
+	categories?: FieldPolicy<any> | FieldReadFunction<any>,
+	category?: FieldPolicy<any> | FieldReadFunction<any>,
+	health?: FieldPolicy<any> | FieldReadFunction<any>,
+	project?: FieldPolicy<any> | FieldReadFunction<any>,
+	projects?: FieldPolicy<any> | FieldReadFunction<any>,
+	skill?: FieldPolicy<any> | FieldReadFunction<any>,
+	skills?: FieldPolicy<any> | FieldReadFunction<any>,
+	suggestCategories?: FieldPolicy<any> | FieldReadFunction<any>,
+	suggestSkills?: FieldPolicy<any> | FieldReadFunction<any>,
+	userInfo?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type SkillKeySpecifier = ('createdAt' | 'id' | 'name' | 'updatedAt' | SkillKeySpecifier)[];
+export type SkillFieldPolicy = {
+	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type SubscriptionKeySpecifier = ('_' | 'categoryAdded' | 'categoryDeleted' | 'categoryUpdated' | 'health' | 'projectAdded' | 'projectDeleted' | 'projectUpdated' | 'skillAdded' | 'skillDeleted' | 'skillUpdated' | SubscriptionKeySpecifier)[];
+export type SubscriptionFieldPolicy = {
+	_?: FieldPolicy<any> | FieldReadFunction<any>,
+	categoryAdded?: FieldPolicy<any> | FieldReadFunction<any>,
+	categoryDeleted?: FieldPolicy<any> | FieldReadFunction<any>,
+	categoryUpdated?: FieldPolicy<any> | FieldReadFunction<any>,
+	health?: FieldPolicy<any> | FieldReadFunction<any>,
+	projectAdded?: FieldPolicy<any> | FieldReadFunction<any>,
+	projectDeleted?: FieldPolicy<any> | FieldReadFunction<any>,
+	projectUpdated?: FieldPolicy<any> | FieldReadFunction<any>,
+	skillAdded?: FieldPolicy<any> | FieldReadFunction<any>,
+	skillDeleted?: FieldPolicy<any> | FieldReadFunction<any>,
+	skillUpdated?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type UserKeySpecifier = ('email' | 'family_name' | 'given_name' | 'id' | 'name' | 'org_roles' | 'organization' | 'preferred_username' | UserKeySpecifier)[];
+export type UserFieldPolicy = {
+	email?: FieldPolicy<any> | FieldReadFunction<any>,
+	family_name?: FieldPolicy<any> | FieldReadFunction<any>,
+	given_name?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	org_roles?: FieldPolicy<any> | FieldReadFunction<any>,
+	organization?: FieldPolicy<any> | FieldReadFunction<any>,
+	preferred_username?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type StrictTypedTypePolicies = {
+	Attachment?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | AttachmentKeySpecifier | (() => undefined | AttachmentKeySpecifier),
+		fields?: AttachmentFieldPolicy,
+	},
+	Category?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | CategoryKeySpecifier | (() => undefined | CategoryKeySpecifier),
+		fields?: CategoryFieldPolicy,
+	},
+	Estimation?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | EstimationKeySpecifier | (() => undefined | EstimationKeySpecifier),
+		fields?: EstimationFieldPolicy,
+	},
+	Health?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | HealthKeySpecifier | (() => undefined | HealthKeySpecifier),
+		fields?: HealthFieldPolicy,
+	},
+	Mutation?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MutationKeySpecifier | (() => undefined | MutationKeySpecifier),
+		fields?: MutationFieldPolicy,
+	},
+	OrganizationRoles?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | OrganizationRolesKeySpecifier | (() => undefined | OrganizationRolesKeySpecifier),
+		fields?: OrganizationRolesFieldPolicy,
+	},
+	Project?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | ProjectKeySpecifier | (() => undefined | ProjectKeySpecifier),
+		fields?: ProjectFieldPolicy,
+	},
+	Query?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | QueryKeySpecifier | (() => undefined | QueryKeySpecifier),
+		fields?: QueryFieldPolicy,
+	},
+	Skill?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | SkillKeySpecifier | (() => undefined | SkillKeySpecifier),
+		fields?: SkillFieldPolicy,
+	},
+	Subscription?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | SubscriptionKeySpecifier | (() => undefined | SubscriptionKeySpecifier),
+		fields?: SubscriptionFieldPolicy,
+	},
+	User?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | UserKeySpecifier | (() => undefined | UserKeySpecifier),
+		fields?: UserFieldPolicy,
+	}
+};
+export type TypedTypePolicies = StrictTypedTypePolicies & TypePolicies;
+export type ProjectsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProjectsQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'Project', id: string, title: string }> };
+
+
+export const ProjectsDocument = gql`
+    query Projects {
+  projects {
+    id
+    title
+  }
+}
+    `;
+
+/**
+ * __useProjectsQuery__
+ *
+ * To run a query within a React component, call `useProjectsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProjectsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProjectsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useProjectsQuery(baseOptions?: Apollo.QueryHookOptions<ProjectsQuery, ProjectsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProjectsQuery, ProjectsQueryVariables>(ProjectsDocument, options);
+      }
+export function useProjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProjectsQuery, ProjectsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProjectsQuery, ProjectsQueryVariables>(ProjectsDocument, options);
+        }
+export type ProjectsQueryHookResult = ReturnType<typeof useProjectsQuery>;
+export type ProjectsLazyQueryHookResult = ReturnType<typeof useProjectsLazyQuery>;
+export type ProjectsQueryResult = Apollo.QueryResult<ProjectsQuery, ProjectsQueryVariables>;

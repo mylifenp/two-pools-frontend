@@ -16,11 +16,17 @@ const config: CodegenConfig = {
     },
   ],
   documents: ["app/**/*.tsx", "app/**/*.ts"],
+  watch: false,
   ignoreNoDocuments: true,
   generates: {
     "./generated/": {
       preset: "client",
-      plugins: [],
+      overwrite: true,
+      plugins: [
+        "typescript-apollo-client-helpers",
+        "typescript-operations",
+        "typescript-react-apollo",
+      ],
     },
   },
 };

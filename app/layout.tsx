@@ -1,9 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { NextAuthProvider as AuthProvider } from "./providers";
-// import { graphql } from "../gql";
-// import { graphqlClient } from "../lib/graphql-client";
+import { NextAuthProvider } from "../lib/next-auth-providers";
+import { ApolloWrapper } from "../lib/apollo-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,12 +20,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const { test } = await graphqlClient.request(testDoc);
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>{children}</AuthProvider>
-        {/* <p>{JSON.stringify(test)}</p> */}
+        <NextAuthProvider>
+          <ApolloWrapper>{children}</ApolloWrapper>
+        </NextAuthProvider>
       </body>
     </html>
   );

@@ -1,26 +1,36 @@
 // import { Projects } from "@components/project/projects.component";
 import { User } from "../components/user.component";
 import Image from "next/image";
-import { graphqlClient } from "@lib/graphql-client";
+import { gql } from "@apollo/client";
 import { Projects } from "@components/project/projects.component";
-import { graphql } from "../generated";
 import { Project, ProjectsQuery } from "../generated/graphql";
+import { getClient } from "@lib/client";
+import { Skills } from "@components/skill/skills.component";
+// import { getServerSession } from "next-auth";
+// import { AuthOptions } from "@lib/auth";
 
-interface Data {
-  projects: Project[];
-}
-
-const GET_PROJECTS = graphql(/* GraphQL */ `
+const GET_PROJECTS = gql`
   query Projects {
     projects {
       id
       title
     }
   }
-`);
+`;
 
 export default async function Home() {
-  const { projects } = await graphqlClient.request<Data>(GET_PROJECTS);
+  const {
+    data: { projects },
+    loading,
+    error,
+  } = await getClient().query<ProjectsQuery>({
+    query: GET_PROJECTS,
+  });
+  // const data = await getServerSession(AuthOptions);
+  // console.log("data", data);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
   return (
     <div className="page-bg min-h-screen">
       <Projects projects={projects} />
@@ -30,6 +40,7 @@ export default async function Home() {
           <User />
         </div>
       </div>
+      <Skills />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Project } from "../../generated/graphql";
 import { graphql } from "../../generated";
 
 interface Props {
-  projects: Project[];
+  projects: any;
 }
 
 export const Projects: FC<Props> = ({ projects }) => {
