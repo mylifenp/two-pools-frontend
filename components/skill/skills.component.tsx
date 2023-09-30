@@ -1,38 +1,33 @@
 "use client";
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-import { gql } from "@apollo/client";
-import { Skill } from "../../generated/graphql";
+import {
+  useQuery,
+  useSuspenseQuery,
+} from "@apollo/experimental-nextjs-app-support/ssr";
+
+import { FC } from "react";
+import { GET_SKILLS } from "@typdef/queries";
 import { useSession } from "next-auth/react";
 
-const GET_SKILLS = gql`
-  query Skills {
-    skills {
-      id
-      name
-    }
-  }
-`;
+interface Props {
+  dictionary: { increment: string; decrement: string };
+}
 
-export const Skills = () => {
-  // const { status } = useSession();
-  // let content;
+// export const Skills: FC<Props> = ({ dictionary }) => {
+//   const { data: session, status } = useSession();
+//   if (status === "authenticated") {
+//     return <SkillsList dictionary={dictionary} />;
+//   }
+//   return null;
+// };
 
-  // const {
-  //   data: { skills },
-  //   error,
-  // } = useSuspenseQuery<{ skills: Skill[] }>(GET_SKILLS);
+export const Skills: FC<Props> = ({ dictionary }) => {
+  const { data, error, loading } = useQuery(GET_SKILLS);
 
-  // if (status === "loading") {
-  //   content = <p>Loading...</p>;
-  // }
-
-  // if (status === "unauthenticated") {
-  //   content = <p>Not authenticated</p>;
-  // }
-  // if (status === "authenticated") {
-  //   content = <div>{JSON.stringify(skills)}</div>;
-  // }
-
-  // return <div>{content}</div>;
-  return <div>test</div>;
+  if (loading) return <p>Loading...</p>;
+  return (
+    <div>
+      <p>In Skills</p>
+      <div>{JSON.stringify(data)}</div>
+    </div>
+  );
 };

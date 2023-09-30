@@ -1,39 +1,63 @@
-import { HttpLink, from } from "@apollo/client";
+import { HttpLink, split } from "@apollo/client";
 import {
   NextSSRInMemoryCache,
   NextSSRApolloClient,
 } from "@apollo/experimental-nextjs-app-support/ssr";
 import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
 import { setContext } from "@apollo/client/link/context";
+import { createClient } from "graphql-ws";
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { getMainDefinition } from "@apollo/client/utilities";
+import { getSession } from "next-auth/react";
+import env_config from "../config";
+import { getServerSession } from "next-auth";
+import { AuthOptions } from "./auth";
 
-const { GQL_API_URL, GQL_ACCESS_TOKEN, GQL_ID_TOKEN } = process.env;
+const { GQL_API_URL, GQL_WS_URL } = env_config;
 
 export const { getClient } = registerApolloClient(() => {
-  const access_token = `${GQL_ACCESS_TOKEN}`;
-  const id_token = `${GQL_ID_TOKEN}`;
-  // console.log("access_token", access_token);
-  // const errorLink = onError(({ graphQLErrors, networkError }) => {
-  //   if (graphQLErrors)
-  //     graphQLErrors.forEach(({ message, locations, path }) =>
-  //       console.log(
-  //         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-  //       )
-  //     );
-  //   if (networkError) console.log(`[Network error]: ${networkError}`);
-  // });
-  const httpLink = new HttpLink({ uri: `${GQL_API_URL}` });
-  const authLink = setContext((_, { headers }) => {
+  const httpLink = new HttpLink({ uri: GQL_API_URL });
+
+  const wsLink = new GraphQLWsLink(
+    createClient({
+      url: GQL_WS_URL,
+      connectionParams: async () => {
+        const session = await getSession();
+        if (!session) return {};
+        const { access_token, id_token } = session;
+        return { access_token, id_token };
+      },
+    })
+  );
+  const authLink = setContext(async (_, { headers }) => {
+    const session = await getServerSession(AuthOptions);
+    const { access_token, id_token } = session ?? {
+      access_token: "",
+      id_token: "",
+    };
     return {
       headers: {
         ...headers,
-        access_token: access_token ?? "",
-        id_token: id_token ?? "",
+        access_token,
+        id_token,
       },
     };
   });
-  const link = authLink.concat(httpLink);
+
+  const splitLink = split(
+    ({ query }) => {
+      const definition = getMainDefinition(query);
+      return (
+        definition.kind === "OperationDefinition" &&
+        definition.operation === "subscription"
+      );
+    },
+    wsLink,
+    authLink.concat(httpLink)
+  );
+
   return new NextSSRApolloClient({
     cache: new NextSSRInMemoryCache(),
-    link,
+    link: splitLink,
   });
 });

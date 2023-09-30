@@ -1,4 +1,4 @@
-import { Info } from "../../components/info.component";
+import { Info } from "@components/info.component";
 
 // // import { graphql } from "../../gql";
 // // import { graphqlClient } from "../../lib/graphql-client";
