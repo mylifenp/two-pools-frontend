@@ -1,4 +1,4 @@
-import LanguageChanger from "@components/i18n/local-switcher";
+import LanguageChanger from "@components/i18n/languageChanger";
 import ThemeChanger from "@components/theme/changer";
 import Link from "next/link";
 import { FC } from "react";
