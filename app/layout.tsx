@@ -1,16 +1,16 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { currentLocale } from "next-i18n-router";
 import { Inter } from "next/font/google";
 import { NextAuthProvider } from "@lib/auth/next-auth-providers";
 import ApolloWrapper from "@lib/apollo/apollo-provider";
-import { i18n } from "@lib/i18n/i18n-config";
 import { getServerSession } from "next-auth";
 import { AuthOptions } from "@lib/auth/auth";
 import NavBar from "@components/layout/navbar";
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
+// export async function generateStaticParams() {
+//   return i18n.locales.map((locale) => ({ lang: locale }));
+// }
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,7 +32,7 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(AuthOptions);
   return (
-    <html lang={params.lang} data-theme="light">
+    <html lang={currentLocale()} data-theme="light">
       <body className={inter.className}>
         <NextAuthProvider>
           <ApolloWrapper session={session}>

@@ -9,13 +9,14 @@ import {
   SetStateAction,
   useState,
 } from "react";
+import { useIntl } from "react-intl";
 
 interface Props {
   skill: Skill;
-  dictionary: any;
 }
 
-export const EditSkill: FC<Props> = ({ skill, dictionary }) => {
+export const EditSkill: FC<Props> = ({ skill }) => {
+  const { formatMessage } = useIntl();
   const [input, setInput] = useState<SkillInput | null>(null);
   const [updateSkillFn, { loading, error }] = useUpdateSkillMutation();
 
@@ -40,9 +41,8 @@ export const EditSkill: FC<Props> = ({ skill, dictionary }) => {
     setInput(null);
   };
 
-  if (loading)
-    return <Spinner text={dictionary["miscl"].loading ?? "loading"} />;
-  if (error) return <Error error={dictionary["miscl"].error ?? "error"} />;
+  if (loading) return <Spinner text={formatMessage({ id: "loading" })} />;
+  if (error) return <Error error={formatMessage({ id: "error" })} />;
 
   if (!input) {
     return (

@@ -1,7 +1,32 @@
-import LocaleSwitcher from "@components/i18n/local-switcher";
+import LanguageChanger from "@components/i18n/local-switcher";
 import ThemeChanger from "@components/theme/changer";
 import Link from "next/link";
 import { FC } from "react";
+
+interface Pages {
+  name: string;
+  href: string;
+}
+
+const navigation: Array<Pages> = [
+  { name: "Homepage", href: "/" },
+  {
+    name: "User",
+    href: "/user",
+  },
+  {
+    name: "Skill",
+    href: "/skill",
+  },
+  {
+    name: "Info",
+    href: "/info",
+  },
+  {
+    name: "Admin",
+    href: "/admin",
+  },
+];
 
 interface Props {}
 
@@ -30,10 +55,11 @@ const NavBar: FC<Props> = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <Link href="/">Homepage</Link>
-            <Link href="/user">User</Link>
-            <Link href="/skill">Skill</Link>
-            <Link href="/info">Info</Link>
+            {navigation.map(({ name, href }) => (
+              <Link href={href} key={href}>
+                {name}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
@@ -57,7 +83,7 @@ const NavBar: FC<Props> = () => {
             />
           </svg>
         </button>
-        <LocaleSwitcher />
+        <LanguageChanger />
         <button className="btn btn-ghost btn-circle" title="notification">
           <div className="indicator">
             <svg

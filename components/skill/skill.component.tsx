@@ -5,16 +5,15 @@ import { EditSkill } from "./skill.edit.component";
 
 interface Props {
   skill: ISkill;
-  dictionary: any;
 }
 
-export const Skill: FC<Props> = ({ skill, dictionary }) => {
+export const Skill: FC<Props> = ({ skill }) => {
   return (
     <div className="shadow-2xl m-6 p-3">
       <p>In Skills</p>
       <div>{skill.name}</div>
       <div>{skill.createdAt}</div>
-      <EditSkill skill={skill} dictionary={dictionary} />
+      <EditSkill skill={skill} />
     </div>
   );
 };
