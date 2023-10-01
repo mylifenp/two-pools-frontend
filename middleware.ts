@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { i18n } from "./lib/i18n/i18n-config";
-import { isAdmin } from "@lib/org_roles";
+import { isAdmin } from "@lib/auth/org_roles";
 import { OrgRoles } from "next-auth";
 import { withAuth } from "next-auth/middleware";
 import { match as matchLocale } from "@formatjs/intl-localematcher";

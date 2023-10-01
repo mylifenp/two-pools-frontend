@@ -1,33 +1,19 @@
 "use client";
-import {
-  useQuery,
-  useSuspenseQuery,
-} from "@apollo/experimental-nextjs-app-support/ssr";
-
+import { Skill as ISkill } from "@generated/types";
 import { FC } from "react";
-import { GET_SKILLS } from "@typdef/queries";
-import { useSession } from "next-auth/react";
+import { Skill } from "./skill.component";
 
 interface Props {
-  dictionary: { increment: string; decrement: string };
+  dictionary: any;
+  skills: Array<ISkill>;
 }
 
-// export const Skills: FC<Props> = ({ dictionary }) => {
-//   const { data: session, status } = useSession();
-//   if (status === "authenticated") {
-//     return <SkillsList dictionary={dictionary} />;
-//   }
-//   return null;
-// };
-
-export const Skills: FC<Props> = ({ dictionary }) => {
-  const { data, error, loading } = useQuery(GET_SKILLS);
-
-  if (loading) return <p>Loading...</p>;
+export const Skills: FC<Props> = ({ dictionary, skills }) => {
   return (
-    <div>
-      <p>In Skills</p>
-      <div>{JSON.stringify(data)}</div>
-    </div>
+    <>
+      {skills.map((skill) => (
+        <Skill key={skill.id} skill={skill} dictionary={dictionary.miscl} />
+      ))}
+    </>
   );
 };

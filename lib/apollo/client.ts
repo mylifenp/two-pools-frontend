@@ -1,4 +1,4 @@
-import { HttpLink, split } from "@apollo/client";
+import { HttpLink, from, split } from "@apollo/client";
 import {
   NextSSRInMemoryCache,
   NextSSRApolloClient,
@@ -9,9 +9,10 @@ import { createClient } from "graphql-ws";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { getSession } from "next-auth/react";
-import env_config from "../config";
+import env_config from "../../config";
 import { getServerSession } from "next-auth";
-import { AuthOptions } from "./auth";
+import { AuthOptions } from "../auth/auth";
+import { onError } from "@apollo/client/link/error";
 
 const { GQL_API_URL, GQL_WS_URL } = env_config;
 
@@ -56,8 +57,21 @@ export const { getClient } = registerApolloClient(() => {
     authLink.concat(httpLink)
   );
 
+  const errorLink = onError(({ graphQLErrors, networkError }) => {
+    if (graphQLErrors) {
+      graphQLErrors.forEach(({ message, locations, path }) =>
+        console.error(
+          `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+        )
+      );
+    }
+    if (networkError) {
+      console.error("[Network error]:", networkError);
+    }
+  });
+
   return new NextSSRApolloClient({
     cache: new NextSSRInMemoryCache(),
-    link: splitLink,
+    link: from([errorLink, splitLink]),
   });
 });

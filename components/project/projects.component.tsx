@@ -1,17 +1,14 @@
 "use client";
+import { GetProjectsQuery } from "@generated/types";
 import { FC } from "react";
-import { Project } from "../../generated/graphql";
-import { graphql } from "../../generated";
+import Project from "./project.component";
 
 interface Props {
-  projects: any;
+  projects: GetProjectsQuery["projects"];
 }
 
 export const Projects: FC<Props> = ({ projects }) => {
-  return (
-    <>
-      <p>projects</p>
-      <p>{JSON.stringify(projects)}</p>
-    </>
-  );
+  return projects.map((project) => (
+    <Project key={project.id} project={project} />
+  ));
 };

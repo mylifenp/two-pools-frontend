@@ -1,9 +1,14 @@
 {
   "server-component": {
-    "welcome": "Willkommen"
+    "welcome": "Willkommen",
+    "user": "Benutzer"
   },
   "counter": {
     "increment": "Zuwachs",
     "decrement": "Dekrementieren"
+  },
+  "miscl": {
+    "loading": "Wird geladen",
+    "error": "Fehler"
   }
 }

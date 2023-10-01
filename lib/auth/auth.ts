@@ -7,7 +7,7 @@ import type {
   NextApiResponse,
 } from "next";
 import { getServerSession } from "next-auth";
-import env_config from "../config";
+import env_config from "../../config";
 
 const { CLIENT_ID, CLIENT_SECRET, ISSUER } = env_config;
 
