@@ -1,6 +1,5 @@
-"use client";
-import { Skill as ISkill, SkillInput } from "@generated/types";
-import { FC, useState } from "react";
+import { Skill as ISkill } from "@generated/types";
+import { FC } from "react";
 import { EditSkill } from "./skill.edit.component";
 
 interface Props {

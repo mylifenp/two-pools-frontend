@@ -1,3 +1,4 @@
+"use client";
 import { Spinner, Error } from "@components/miscl";
 import { Skill, SkillInput, useUpdateSkillMutation } from "@generated/types";
 import {

@@ -25,7 +25,7 @@
       "@dictionaries/*": ["./dictionaries/*"],
       "@generated/*": ["./generated/*"],
       "@components/*": ["./components/*"],
-      "@typdef/*": ["./typdef/*"],
+      "@typedef/*": ["./typedef/*"],
       "@config/*": ["./config/*"],
       "@messages/*": ["./messages/*"],
       "@static/*": ["./static/*"]

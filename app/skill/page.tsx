@@ -1,6 +1,6 @@
 import { getClient } from "@lib/apollo/client";
 import { GetSkillsQuery } from "@generated/types";
-import { SKILL } from "@typdef/queries";
+import { SKILL } from "@typedef/queries";
 import { Error, Spinner } from "@components/miscl";
 import { Skills } from "@components/skill/skills.component";
 import getIntl from "@app/intl";

@@ -1,4 +1,3 @@
-"use client";
 import { Skill as ISkill } from "@generated/types";
 import { FC } from "react";
 import { Skill } from "./skill.component";

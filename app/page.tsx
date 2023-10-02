@@ -1,5 +1,5 @@
 import { getClient } from "@lib/apollo/client";
-import { PROJECT } from "@typdef/queries";
+import { PROJECT } from "@typedef/queries";
 import { Projects } from "@components/project/projects.component";
 import { GetProjectsQuery } from "@generated/types";
 import getIntl from "./intl";

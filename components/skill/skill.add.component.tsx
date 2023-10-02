@@ -1,6 +1,6 @@
 "use client";
 import { SkillInput, useAddSkillMutation } from "@generated/types";
-import { SKILL } from "@typdef/fragments";
+import { SKILL } from "@typedef/fragments";
 import { FC, FormEvent, useState } from "react";
 import { useIntl } from "react-intl";
 

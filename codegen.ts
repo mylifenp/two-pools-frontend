@@ -21,8 +21,8 @@ const config: CodegenConfig = {
   documents: [
     "./app/**/*.tsx",
     "./app/**/*.ts",
-    "./typdef/**/*.ts",
-    "typdef/**/*.tsx",
+    "./typedef/**/*.ts",
+    "./typedef/**/*.tsx",
   ],
   watch: false,
   ignoreNoDocuments: true,
