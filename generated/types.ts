@@ -37,6 +37,19 @@ export type Category = {
   updatedAt?: Maybe<Scalars['String']['output']>;
 };
 
+export type EmailSubscription = {
+  __typename?: 'EmailSubscription';
+  active: Scalars['Boolean']['output'];
+  createdAt?: Maybe<Scalars['String']['output']>;
+  email: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  updatedAt?: Maybe<Scalars['String']['output']>;
+};
+
+export type EmailSubscriptionInput = {
+  email: Scalars['String']['input'];
+};
+
 export type Estimation = {
   __typename?: 'Estimation';
   unit?: Maybe<EstimationUnit>;
@@ -75,9 +88,11 @@ export type Mutation = {
   __typename?: 'Mutation';
   _?: Maybe<Scalars['Boolean']['output']>;
   addCategory: Category;
+  addEmailSubscription: Result;
   addProject: Project;
   addSkill: Skill;
   deleteCategory: Category;
+  deleteEmailSubscription: Result;
   deleteProject: Project;
   deleteSkill: Skill;
   health: Health;
@@ -89,6 +104,11 @@ export type Mutation = {
 
 export type MutationAddCategoryArgs = {
   name: Scalars['String']['input'];
+};
+
+
+export type MutationAddEmailSubscriptionArgs = {
+  input: EmailSubscriptionInput;
 };
 
 
@@ -104,6 +124,11 @@ export type MutationAddSkillArgs = {
 
 export type MutationDeleteCategoryArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteEmailSubscriptionArgs = {
+  input: EmailSubscriptionInput;
 };
 
 
@@ -181,6 +206,7 @@ export type Query = {
   categories: Array<Category>;
   category: Category;
   health: Health;
+  isEmailSubscribed: Result;
   project: Project;
   projects: Array<Project>;
   skill: Skill;
@@ -193,6 +219,11 @@ export type Query = {
 
 export type QueryCategoryArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type QueryIsEmailSubscribedArgs = {
+  input: EmailSubscriptionInput;
 };
 
 
@@ -213,6 +244,12 @@ export type QuerySuggestCategoriesArgs = {
 
 export type QuerySuggestSkillsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+};
+
+export type Result = {
+  __typename?: 'Result';
+  message: Scalars['String']['output'];
+  status: Scalars['Boolean']['output'];
 };
 
 export type Skill = {
@@ -302,6 +339,20 @@ export type DeleteSkillMutationVariables = Exact<{
 
 export type DeleteSkillMutation = { __typename?: 'Mutation', deleteSkill: { __typename?: 'Skill', id: string, name: string } };
 
+export type AddEmailSubscriptionMutationVariables = Exact<{
+  input: EmailSubscriptionInput;
+}>;
+
+
+export type AddEmailSubscriptionMutation = { __typename?: 'Mutation', addEmailSubscription: { __typename?: 'Result', status: boolean, message: string } };
+
+export type DeleteEmailSubscriptionMutationVariables = Exact<{
+  input: EmailSubscriptionInput;
+}>;
+
+
+export type DeleteEmailSubscriptionMutation = { __typename?: 'Mutation', deleteEmailSubscription: { __typename?: 'Result', status: boolean, message: string } };
+
 export type GetProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -311,6 +362,13 @@ export type GetSkillsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetSkillsQuery = { __typename?: 'Query', skills: Array<{ __typename?: 'Skill', id: string, name: string, createdAt: any, updatedAt: any }> };
+
+export type IsEmailSubscribedQueryVariables = Exact<{
+  input: EmailSubscriptionInput;
+}>;
+
+
+export type IsEmailSubscribedQuery = { __typename?: 'Query', isEmailSubscribed: { __typename?: 'Result', status: boolean, message: string } };
 
 export type SkillAddedSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
@@ -482,6 +540,74 @@ export function useDeleteSkillMutation(baseOptions?: Apollo.MutationHookOptions<
 export type DeleteSkillMutationHookResult = ReturnType<typeof useDeleteSkillMutation>;
 export type DeleteSkillMutationResult = Apollo.MutationResult<DeleteSkillMutation>;
 export type DeleteSkillMutationOptions = Apollo.BaseMutationOptions<DeleteSkillMutation, DeleteSkillMutationVariables>;
+export const AddEmailSubscriptionDocument = gql`
+    mutation AddEmailSubscription($input: EmailSubscriptionInput!) {
+  addEmailSubscription(input: $input) {
+    status
+    message
+  }
+}
+    `;
+export type AddEmailSubscriptionMutationFn = Apollo.MutationFunction<AddEmailSubscriptionMutation, AddEmailSubscriptionMutationVariables>;
+
+/**
+ * __useAddEmailSubscriptionMutation__
+ *
+ * To run a mutation, you first call `useAddEmailSubscriptionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddEmailSubscriptionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addEmailSubscriptionMutation, { data, loading, error }] = useAddEmailSubscriptionMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useAddEmailSubscriptionMutation(baseOptions?: Apollo.MutationHookOptions<AddEmailSubscriptionMutation, AddEmailSubscriptionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddEmailSubscriptionMutation, AddEmailSubscriptionMutationVariables>(AddEmailSubscriptionDocument, options);
+      }
+export type AddEmailSubscriptionMutationHookResult = ReturnType<typeof useAddEmailSubscriptionMutation>;
+export type AddEmailSubscriptionMutationResult = Apollo.MutationResult<AddEmailSubscriptionMutation>;
+export type AddEmailSubscriptionMutationOptions = Apollo.BaseMutationOptions<AddEmailSubscriptionMutation, AddEmailSubscriptionMutationVariables>;
+export const DeleteEmailSubscriptionDocument = gql`
+    mutation DeleteEmailSubscription($input: EmailSubscriptionInput!) {
+  deleteEmailSubscription(input: $input) {
+    status
+    message
+  }
+}
+    `;
+export type DeleteEmailSubscriptionMutationFn = Apollo.MutationFunction<DeleteEmailSubscriptionMutation, DeleteEmailSubscriptionMutationVariables>;
+
+/**
+ * __useDeleteEmailSubscriptionMutation__
+ *
+ * To run a mutation, you first call `useDeleteEmailSubscriptionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteEmailSubscriptionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteEmailSubscriptionMutation, { data, loading, error }] = useDeleteEmailSubscriptionMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useDeleteEmailSubscriptionMutation(baseOptions?: Apollo.MutationHookOptions<DeleteEmailSubscriptionMutation, DeleteEmailSubscriptionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteEmailSubscriptionMutation, DeleteEmailSubscriptionMutationVariables>(DeleteEmailSubscriptionDocument, options);
+      }
+export type DeleteEmailSubscriptionMutationHookResult = ReturnType<typeof useDeleteEmailSubscriptionMutation>;
+export type DeleteEmailSubscriptionMutationResult = Apollo.MutationResult<DeleteEmailSubscriptionMutation>;
+export type DeleteEmailSubscriptionMutationOptions = Apollo.BaseMutationOptions<DeleteEmailSubscriptionMutation, DeleteEmailSubscriptionMutationVariables>;
 export const GetProjectsDocument = gql`
     query GetProjects {
   projects {
@@ -557,6 +683,42 @@ export function useGetSkillsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type GetSkillsQueryHookResult = ReturnType<typeof useGetSkillsQuery>;
 export type GetSkillsLazyQueryHookResult = ReturnType<typeof useGetSkillsLazyQuery>;
 export type GetSkillsQueryResult = Apollo.QueryResult<GetSkillsQuery, GetSkillsQueryVariables>;
+export const IsEmailSubscribedDocument = gql`
+    query IsEmailSubscribed($input: EmailSubscriptionInput!) {
+  isEmailSubscribed(input: $input) {
+    status
+    message
+  }
+}
+    `;
+
+/**
+ * __useIsEmailSubscribedQuery__
+ *
+ * To run a query within a React component, call `useIsEmailSubscribedQuery` and pass it any options that fit your needs.
+ * When your component renders, `useIsEmailSubscribedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useIsEmailSubscribedQuery({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useIsEmailSubscribedQuery(baseOptions: Apollo.QueryHookOptions<IsEmailSubscribedQuery, IsEmailSubscribedQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<IsEmailSubscribedQuery, IsEmailSubscribedQueryVariables>(IsEmailSubscribedDocument, options);
+      }
+export function useIsEmailSubscribedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<IsEmailSubscribedQuery, IsEmailSubscribedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<IsEmailSubscribedQuery, IsEmailSubscribedQueryVariables>(IsEmailSubscribedDocument, options);
+        }
+export type IsEmailSubscribedQueryHookResult = ReturnType<typeof useIsEmailSubscribedQuery>;
+export type IsEmailSubscribedLazyQueryHookResult = ReturnType<typeof useIsEmailSubscribedLazyQuery>;
+export type IsEmailSubscribedQueryResult = Apollo.QueryResult<IsEmailSubscribedQuery, IsEmailSubscribedQueryVariables>;
 export const SkillAddedDocument = gql`
     subscription SkillAdded {
   skillAdded {

@@ -1,5 +1,6 @@
 import LanguageChanger from "@components/i18n/languageChanger";
 import ThemeChanger from "@components/theme/changer";
+import UserInfo from "@components/user/user-info";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -103,8 +104,8 @@ const NavBar: FC<Props> = () => {
             <span className="badge badge-xs badge-primary indicator-item"></span>
           </div>
         </button>
-
         <ThemeChanger />
+        <UserInfo />
       </div>
     </div>
   );

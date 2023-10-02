@@ -4,6 +4,7 @@ import { SKILL } from "@typdef/queries";
 import { Error, Spinner } from "@components/miscl";
 import { Skills } from "@components/skill/skills.component";
 import getIntl from "@app/intl";
+import { AddSkill } from "@components/skill/skill.add.component";
 
 export default async function SkillPage() {
   const intl = await getIntl();
@@ -19,6 +20,7 @@ export default async function SkillPage() {
   return (
     <div className="page-bg min-h-screen">
       <div className="py-12">
+        <AddSkill />
         <div className="mx-auto max-w-3xl px-6 lg:px-8 text-center">
           <Skills skills={skills} />
         </div>

@@ -2,11 +2,9 @@ import { Spinner, Error } from "@components/miscl";
 import { Skill, SkillInput, useUpdateSkillMutation } from "@generated/types";
 import {
   ChangeEventHandler,
-  Dispatch,
   FC,
   FormEventHandler,
   MouseEventHandler,
-  SetStateAction,
   useState,
 } from "react";
 import { useIntl } from "react-intl";

@@ -27,7 +27,8 @@
       "@components/*": ["./components/*"],
       "@typdef/*": ["./typdef/*"],
       "@config/*": ["./config/*"],
-      "@messages/*": ["./messages/*"]
+      "@messages/*": ["./messages/*"],
+      "@static/*": ["./static/*"]
     }
   },
   "include": [
