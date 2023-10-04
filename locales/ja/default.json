@@ -1,1 +1,11 @@
-{"back":"戻る","error":"エラーが発生しました","page2":"ページ2へ行く","header":"私の国際化アプリ","loading":"読み込み中...","addSkill":"スキルの追加","greeting":"良い一日を！","about_header":"私の「アバウト」ページへようこそ"}
+{
+  "back": "戻る",
+  "error": "エラーが発生しました",
+  "page2": "ページ2へ行く",
+  "header": "私の国際化アプリ",
+  "loading": "読み込み中...",
+  "addSkill": "スキルの追加",
+  "greeting": "良い一日を！",
+  "about_header": "私の「アバウト」ページへようこそ",
+  "categories": "カテゴリー"
+}

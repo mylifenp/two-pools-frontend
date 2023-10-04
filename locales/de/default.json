@@ -1,1 +1,11 @@
-{"back":"Zurück","error":"Fehler","page2":"Gehe zu Seite 2","header":"Meine internationalisierte App","loading":"Lade...","addSkill":"Skill hinzufügen","greeting":"Hab einen schönen Tag!","about_header":"Willkommen auf meiner Über-mich-Seite"}
+{
+  "back": "Zurück",
+  "error": "Fehler",
+  "page2": "Gehe zu Seite 2",
+  "header": "Meine internationalisierte App",
+  "loading": "Lade...",
+  "addSkill": "Skill hinzufügen",
+  "greeting": "Hab einen schönen Tag!",
+  "about_header": "Willkommen auf meiner Über-mich-Seite",
+  "categories": "Kategorien"
+}
