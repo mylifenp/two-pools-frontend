@@ -5,12 +5,12 @@ import getIntl from "@app/intl";
 interface Props {}
 
 const Page: FC<Props> = async () => {
-  const intl = await getIntl();
+  const { formatMessage } = await getIntl("admin");
   return (
     <>
-      Admin Page
+      <h1>{formatMessage({ id: "header.title" })}</h1>
       <div>
-        <p>{intl.formatMessage({ id: "page2" })}</p>
+        <p>{formatMessage({ id: "header.subtitle.tags" })}</p>
       </div>
       <Info />
     </>
