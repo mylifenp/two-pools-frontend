@@ -26,7 +26,6 @@
       "@generated/*": ["./generated/*"],
       "@components/*": ["./components/*"],
       "@typedef/*": ["./typedef/*"],
-      "@config/*": ["./config/*"],
       "@messages/*": ["./messages/*"],
       "@static/*": ["./static/*"]
     }
