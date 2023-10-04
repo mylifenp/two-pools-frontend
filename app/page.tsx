@@ -2,7 +2,7 @@ import { getClient } from "@lib/apollo/client";
 import { PROJECT } from "@typedef/queries";
 import { Projects } from "@components/project/projects.component";
 import { GetProjectsQuery } from "@generated/types";
-import getIntl from "./intl";
+import getIntl from "@app/intl";
 
 export default async function Home() {
   const { formatMessage } = await getIntl();

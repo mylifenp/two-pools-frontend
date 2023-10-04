@@ -4,6 +4,6 @@ interface Props {
   children: ReactNode;
 }
 
-export default async function InfoLayout({ children }: Props) {
+export default async function ErrorLayout({ children }: Props) {
   return <>{children}</>;
 }

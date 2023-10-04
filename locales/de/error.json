@@ -1,0 +1,19 @@
+{
+  "errors": {
+    "unauthorized": {
+      "title": "Nicht autorisiert",
+      "subtitle": "Sie sind nicht berechtigt, diese Seite anzuzeigen",
+      "home": "Gehen Sie zur Indexseite"
+    },
+    "forbidden": {
+      "title": "Verboten",
+      "subtitle": "Es ist Ihnen untersagt, diese Seite anzuzeigen",
+      "home": "Gehen Sie zur Indexseite"
+    },
+    "bad_request": {
+      "title": "Ungültige Anforderung",
+      "subtitle": "Die von Ihnen angeforderte Seite ist ungültig",
+      "home": "Gehen Sie zur Indexseite"
+    }
+  }
+}

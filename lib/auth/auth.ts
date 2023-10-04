@@ -56,6 +56,9 @@ export const AuthOptions: NextAuthOptions = {
       },
     }),
   ],
+  pages: {
+    error: "/error",
+  },
   callbacks: {
     async jwt({ token, account, user, profile }) {
       // console.log("user, profile", user, profile);

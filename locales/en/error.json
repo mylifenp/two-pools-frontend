@@ -1,0 +1,19 @@
+{
+  "errors": {
+    "unauthorized": {
+      "title": "Unauthorized",
+      "subtitle": "You are not authorized to view this page",
+      "home": "Go to the index page"
+    },
+    "forbidden": {
+      "title": "Forbidden",
+      "subtitle": "You are forbidden to view this page",
+      "home": "Go to the index page"
+    },
+    "bad_request": {
+      "title": "Bad Request",
+      "subtitle": "The page you requested is not valid",
+      "home": "Go to the index page"
+    }
+  }
+}

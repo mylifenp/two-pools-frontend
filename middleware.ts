@@ -10,22 +10,25 @@ export function middleware(request: NextRequest) {
 }
 
 export default withAuth(
-  // function middleware(req) {
-  //   console.log(req.nextauth.token);
-  // },
+  function middleware(req) {
+    console.log(req.nextauth.token);
+  },
   {
     callbacks: {
       authorized({ req, token }) {
         console.log(req.nextUrl.pathname);
-        if (req.nextUrl.pathname === "/admin") {
-          if (!token || !("user" in token)) return false;
-          const {
-            user: { org_roles },
-          } = token as { user: { org_roles: OrgRoles } };
-          if (!org_roles) return false;
-          return isAdmin(org_roles);
-        }
-        return !!token;
+        // if (req.nextUrl.pathname === "/admin") {
+        //   if (!token || !("user" in token)) return false;
+        //   const {
+        //     user: { org_roles },
+        //   } = token as { user: { org_roles: OrgRoles } };
+        //   if (!org_roles) return false;
+        //   // return isAdmin(org_roles);
+        //   return false;
+        // }
+        // console.log("token in withAuth", token);
+        // return !!token;
+        return false;
       },
     },
   }
@@ -34,7 +37,7 @@ export default withAuth(
 export const config = {
   // Matcher ignoring `/_next/`, `/static` and `/api/`
   matcher: [
-    "/((?!api|static|_next/static|_next/image|favicon.ico).*)",
     "/admin",
+    "/((?!api|static|_next/static|_next/image|favicon.ico).*)",
   ],
 };
