@@ -7,5 +7,23 @@
   "addSkill": "Add Skill",
   "greeting": "Have a great day!",
   "about_header": "Welcome to my About page",
-  "categories": "Categories"
+  "categories": "Categories",
+  "required": {
+    "email": "Email is required"
+  },
+  "newsletter": {
+    "subscribe": "Subscribe",
+    "subscribed": "You are already subscribed",
+    "subscribing": "Processing your subscription..."
+  },
+  "already_subscribed": "You are already subscribed",
+  "invalid": {
+    "date": "Invalid Date received"
+  },
+  "errors": {
+    "basic": {
+      "subtitle": "Oh no! Something went wrong.",
+      "retry": "Please Try Again"
+    }
+  }
 }

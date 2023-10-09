@@ -1,5 +1,5 @@
 "use client";
-import { Spinner, Error } from "@components/miscl";
+import { Spinner, ErrorComp } from "@components/miscl";
 import { Skill, SkillInput, useUpdateSkillMutation } from "@generated/types";
 import {
   ChangeEventHandler,
@@ -41,7 +41,7 @@ export const EditSkill: FC<Props> = ({ skill }) => {
   };
 
   if (loading) return <Spinner text={formatMessage({ id: "loading" })} />;
-  if (error) return <Error error={formatMessage({ id: "error" })} />;
+  if (error) return <ErrorComp error={formatMessage({ id: "error" })} />;
 
   if (!input) {
     return (

@@ -1,7 +1,6 @@
 "use client";
 import {
   useAddEmailSubscriptionMutation,
-  useDeleteEmailSubscriptionMutation,
   useIsEmailSubscribedLazyQuery,
 } from "@generated/types";
 import { Session } from "next-auth";
@@ -42,7 +41,7 @@ export const EmailSubscription: FC<Props> = () => {
   if (sub_data?.isEmailSubscribed.status) {
     return (
       <div>
-        <p>{formatMessage({ id: "already_subscribed" })}</p>
+        <p>{formatMessage({ id: "newsletter.subscribed" })}</p>
       </div>
     );
   }
@@ -82,7 +81,7 @@ const ChangeEmailSubscription: FC<ChangeEmailSubscriptionProps> = ({
   };
 
   if (loading) {
-    return <Spinner text={formatMessage({ id: "subscribing" })} />;
+    return <Spinner text={formatMessage({ id: "newsletter.subscribing" })} />;
   }
 
   if (error) return null;
@@ -97,7 +96,7 @@ const ChangeEmailSubscription: FC<ChangeEmailSubscriptionProps> = ({
         type="text"
         value={newEmail}
         onChange={handleChange}
-        placeholder={formatMessage({ id: "provide_email" })}
+        placeholder={formatMessage({ id: "required.email" })}
         className="input input-bordered w-full pr-16"
       />
       <button
@@ -105,7 +104,7 @@ const ChangeEmailSubscription: FC<ChangeEmailSubscriptionProps> = ({
         onClick={handleCreateSubscription}
         className="btn btn-primary absolute top-0 right-0 rounded-l-none"
       >
-        {formatMessage({ id: "subscribe" })}
+        {formatMessage({ id: "newsletter.subscribe" })}
       </button>
     </>
   );

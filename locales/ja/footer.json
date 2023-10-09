@@ -1,0 +1,12 @@
+{
+  "service": "サービス",
+  "company": "会社",
+  "legal": "法律上の",
+  "email": {
+    "provide": "メールアドレスを入力してください"
+  },
+  "newsletter": "",
+  "miscl": {
+    "newsletter": "ニュースレター"
+  }
+}

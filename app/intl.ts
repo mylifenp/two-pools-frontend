@@ -24,10 +24,7 @@ export default async function getIntl(namespace: string = "default") {
     fallbackOnEmptyString: true,
     onError: (err) => {
       if (err.code === "MISSING_TRANSLATION") {
-        // console.error(`Missing translation: ${err.message}`);
-        // console.error("err");
       }
-      // console.log(err);
     },
   });
 }

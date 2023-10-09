@@ -7,6 +7,7 @@ const {
   REALM_NAME,
   REALM_CLIENT_ID,
   REALM_CLIENT_SECRET,
+  NEXTAUTH_URL,
 } = process.env;
 
 const ISSUER = `${ISSUER_BASE}${REALM_NAME}`;
@@ -24,6 +25,7 @@ const config = {
   REALM_CLIENT_ID: REALM_CLIENT_ID ?? "",
   GQL_ACCESS_TOKEN: GQL_ACCESS_TOKEN ?? "",
   GQL_ID_TOKEN: GQL_ID_TOKEN ?? "",
+  NEXTAUTH_URL: NEXTAUTH_URL ?? "",
 };
 
 export default config;

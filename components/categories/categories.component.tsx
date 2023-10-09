@@ -6,7 +6,7 @@ import { useIntl } from "react-intl";
 import { Category } from "./category.component";
 import { GetCategoriesQuery } from "@generated/types";
 import { CATEGORY } from "@typedef/queries";
-import { Error } from "@components/miscl";
+import { ErrorComp } from "@components/miscl";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
 interface Props {}
@@ -19,7 +19,7 @@ export const Categories: FC<Props> = () => {
   } = useSuspenseQuery<GetCategoriesQuery, GetCategoriesQueryVariables>(
     CATEGORY.GET_CATEGORIES
   );
-  if (error) return <Error error={formatMessage({ id: "error" })} />;
+  if (error) return <ErrorComp error={formatMessage({ id: "error" })} />;
   return (
     <div className="flex-wrap flex">
       {categories.map((category) => (

@@ -7,5 +7,18 @@
   "addSkill": "Skill hinzufügen",
   "greeting": "Hab einen schönen Tag!",
   "about_header": "Willkommen auf meiner Über-mich-Seite",
-  "categories": "Kategorien"
+  "categories": "Kategorien",
+  "errors": {
+    "basic": {
+      "subtitle": "Oh nein, ein Fehler!"
+    }
+  },
+  "newsletter": {
+    "subscribed": "Sie sind bereits abonniert",
+    "subscribing": "Ihr Abonnement wird bearbeitet...",
+    "subscribe": "Abonnieren"
+  },
+  "required": {
+    "email": "E-Mail ist erforderlich"
+  }
 }

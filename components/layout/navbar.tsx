@@ -1,7 +1,9 @@
+import getIntl from "@app/intl";
 import LanguageChanger from "@components/i18n/languageChanger";
 import ThemeChanger from "@components/theme/changer";
 import UserInfo from "@components/user/user-info";
 import Link from "next/link";
+import { format } from "path";
 import { FC } from "react";
 
 interface Pages {
@@ -10,28 +12,29 @@ interface Pages {
 }
 
 const navigation: Array<Pages> = [
-  { name: "Homepage", href: "/" },
+  { name: "homepage", href: "/" },
   {
-    name: "User",
+    name: "user",
     href: "/user",
   },
   {
-    name: "Skill",
+    name: "skill",
     href: "/skill",
   },
   {
-    name: "Info",
+    name: "info",
     href: "/info",
   },
   {
-    name: "Admin",
+    name: "admin",
     href: "/admin",
   },
 ];
 
 interface Props {}
 
-const NavBar: FC<Props> = () => {
+const NavBar: FC<Props> = async () => {
+  const { formatMessage } = await getIntl("navigation");
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -58,7 +61,7 @@ const NavBar: FC<Props> = () => {
           >
             {navigation.map(({ name, href }) => (
               <Link href={href} key={href}>
-                {name}
+                {formatMessage({ id: name })}
               </Link>
             ))}
           </div>

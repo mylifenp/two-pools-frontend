@@ -1,13 +1,11 @@
 import { getClient } from "@lib/apollo/client";
 import { GetSkillsQuery } from "@generated/types";
 import { SKILL } from "@typedef/queries";
-import { Error, Spinner } from "@components/miscl";
 import { Skills } from "@components/skill/skills.component";
-import getIntl from "@app/intl";
 import { AddSkill } from "@components/skill/skill.add.component";
+import ErrorComp from "@components/errors/error";
 
 export default async function SkillPage() {
-  const intl = await getIntl();
   const {
     data: { skills },
     loading,
@@ -15,8 +13,8 @@ export default async function SkillPage() {
   } = await getClient().query<GetSkillsQuery>({
     query: SKILL.GET_SKILLS,
   });
-  if (loading) return <Spinner text={intl.formatMessage({ id: "loading" })} />;
-  if (error) return <Error error={intl.formatMessage({ id: "error" })} />;
+  // if (loading) return <Spinner text={"loading"} />;
+  if (error) return <ErrorComp error={error} />;
   return (
     <div className="page-bg min-h-screen">
       <div className="py-12">

@@ -1,0 +1,23 @@
+{
+  "service": "Service",
+  "branding": "Branding",
+  "design": "Design",
+  "marketing": "Marketing",
+  "advertisement": "Werbeanzeige",
+  "development": "Entwicklung",
+  "company": "Unternehmen",
+  "about": "Über uns",
+  "contact": "Kontakt",
+  "jobs": "Karriere",
+  "legal": "Legal",
+  "press": "Presse",
+  "terms": "Impressum",
+  "privacy": "Datenschutz",
+  "cookie": "Cookie-Richtlinie",
+  "email": {
+    "provide": "Bitte geben Sie Ihre E-Mail-Adresse an"
+  },
+  "miscl": {
+    "newsletter": "Newsletter"
+  }
+}

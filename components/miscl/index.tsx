@@ -1,2 +1,2 @@
 export { default as Spinner } from "./spinner";
-export { default as Error } from "./error";
+export { default as ErrorComp } from "./error.component";

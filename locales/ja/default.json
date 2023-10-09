@@ -7,5 +7,13 @@
   "addSkill": "スキルの追加",
   "greeting": "良い一日を！",
   "about_header": "私の「アバウト」ページへようこそ",
-  "categories": "カテゴリー"
+  "categories": "カテゴリー",
+  "newsletter": {
+    "subscribed": "あなたはすでに加入しています",
+    "subscribing": "サブスクリプションを処理しています...",
+    "subscribe": "購読する"
+  },
+  "required": {
+    "email": "メールアドレスは必須です"
+  }
 }
