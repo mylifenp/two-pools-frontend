@@ -42,7 +42,9 @@ export const User = () => {
         <div className="mb-6 text-p2blue-700 text-md">
           <div>{session.user.email}</div>
           <div>{session.user.name}</div>
-          <div>{JSON.stringify(session)}</div>
+          <div className="text-xs text-justify overflow-x-clip">
+            <pre>{JSON.stringify(session, null, 2)}</pre>
+          </div>
           {/* <div>{session.id_token}</div>
           <div>{session.access_token}</div> */}
         </div>
